@@ -1,4 +1,4 @@
-## plike2C
+## plike2c
 A simple plike to C converter.
 
 Initial release, very limited conversion and syntax support.
