@@ -22,6 +22,11 @@ make
 ## Usage:
 ```
 ./plike2c < input_plike_code.anyextension > output_c_file.c
+
+---
+
+to use with the provided example file (< and > are needed to redirect stdin and stdout, they are needed for the program to run correctly):
+./plike2c < plike_code.txt > c_code.c
 ```
 it can also be manually compiled because it still is one single file:
 ```
