@@ -1,0 +1,113 @@
+procedure SelectionSort(in n: integer, in/out arr[n]: array of integer)
+    var i, j, minIndex, n, temp : integer
+    begin
+    for i := 0 to n - 2 do
+        minIndex := i
+        for j := i + 1 to n - 1 do
+            if arr[j] < arr[minIndex] then
+                minIndex := j
+            endif
+        endfor
+
+        if minIndex != i then
+            temp := arr[i]
+            arr[i] := arr[minIndex]
+            arr[minIndex] := temp
+        endif
+    endfor
+    return
+    end
+endprocedure
+
+
+procedure InsertionSort(in n: integer, in/out arr[n]: array of integer)
+    var i, j, key : integer
+    begin
+    for i := 1 to n - 1 do
+        key := arr[i]
+        j := i - 1
+
+        while j >= 0 && arr[j] > key do
+            arr[j + 1] := arr[j]
+            j := j - 1
+        endwhile
+
+        arr[j + 1] := key
+    endfor
+    end
+endprocedure
+
+procedure MergeSort(in/out arr[]: array of integer, in l: integer, in r: integer)
+    var m : integer
+    begin
+    if l < r then
+        m := (l + r) / 2
+        MergeSort(arr, l, m)
+        MergeSort(arr, m + 1, r)
+        Merge(arr, l, m, r)
+    endif
+endprocedure
+
+procedure Merge(in/out arr[]: array of integer, in l: integer, in m: integer, in r: integer)
+    var n1, n2, i, j, k : integer
+    var L[m - l + 1], R[r - m] : array of integer
+    begin
+    n1 := m - l + 1
+    n2 := r - m
+    
+    for i := 0 to n1 - 1 do
+        L[i] := arr[l + i]
+    endfor
+    for j := 0 to n2 - 1 do
+        R[j] := arr[m + 1 + j]
+    endfor
+    
+    i := 0
+    j := 0
+    k := l
+    
+    while i < n1 && j < n2 do
+        if L[i] <= R[j] then
+            arr[k] := L[i]
+            i := i + 1
+        else
+            arr[k] := R[j]
+            j := j + 1
+        endif
+        k := k + 1
+    endwhile
+    
+    while i < n1 do
+        arr[k] := L[i]
+        i := i + 1
+        k := k + 1
+    endwhile
+    
+    while j < n2 do
+        arr[k] := R[j]
+        j := j + 1
+        k := k + 1
+    endwhile
+endprocedure
+
+function sum(in a : integer, in b : integer): integer
+    begin
+    sum := a + b
+    return
+    end
+endfunction
+
+program MergeSortTest
+    var arr[6] : array of array of integer
+    var n, i : integer
+    begin
+    arr := {12, 11, 13, 5, 6, 7}
+    n := 6
+    
+    MergeSort(arr, 0, n - 1)
+    
+    for i := 0 to n - 1 do
+        print(arr[i])
+    endfor
+    end
+endprogram
