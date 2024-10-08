@@ -30,7 +30,8 @@ or you can compile it with any compiler you want, but redirect the input_plike_c
 
 ## Conventions:
 <details>
-  <summary>P-like syntax conversion</summary>
+  <summary> P-like syntax conversion </summary>
+    
     ## Operators:
     NOT !
     AND &&
