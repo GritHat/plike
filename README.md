@@ -1,6 +1,11 @@
+## plike2C
 A simple plike to C converter.
+
 Initial release, very limited conversion and syntax support.
+
 It contains a plike_code.txt to showcase syntax and available features.
+
+I will add more syntax conversion, more pseudo-code flexibiliy, better docs with the next updates.
 
 ## Requirements:
 gcc
