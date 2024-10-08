@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+c_code.c
 
 # Object files
 *.o
