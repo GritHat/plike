@@ -1,113 +1,75 @@
-procedure SelectionSort(in n: integer, in/out arr[n]: array of integer)
-    var i, j, minIndex, n, temp : integer
+function ricerca_lineare(in x: integer, in n: integer, in arr[n]: array of real): integer
+    var i,j, k, ricerca_lineare : integer
+    var l,m, n : real
+    var ax[4], ak[3] : array of real
+    var b : logical
     begin
-    for i := 0 to n - 2 do
-        minIndex := i
-        for j := i + 1 to n - 1 do
-            if arr[j] < arr[minIndex] then
-                minIndex := j
-            endif
-        endfor
 
-        if minIndex != i then
-            temp := arr[i]
-            arr[i] := arr[minIndex]
-            arr[minIndex] := temp
-        endif
-    endfor
-    return
-    end
-endprocedure
+    ax := {13, 5, 6, 7}
 
-
-procedure InsertionSort(in n: integer, in/out arr[n]: array of integer)
-    var i, j, key : integer
-    begin
-    for i := 1 to n - 1 do
-        key := arr[i]
-        j := i - 1
-
-        while j >= 0 && arr[j] > key do
-            arr[j + 1] := arr[j]
-            j := j - 1
-        endwhile
-
-        arr[j + 1] := key
-    endfor
-    end
-endprocedure
-
-procedure MergeSort(in/out arr[]: array of integer, in l: integer, in r: integer)
-    var m : integer
-    begin
-    if l < r then
-        m := (l + r) / 2
-        MergeSort(arr, l, m)
-        MergeSort(arr, m + 1, r)
-        Merge(arr, l, m, r)
-    endif
-endprocedure
-
-procedure Merge(in/out arr[]: array of integer, in l: integer, in m: integer, in r: integer)
-    var n1, n2, i, j, k : integer
-    var L[m - l + 1], R[r - m] : array of integer
-    begin
-    n1 := m - l + 1
-    n2 := r - m
-    
-    for i := 0 to n1 - 1 do
-        L[i] := arr[l + i]
-    endfor
-    for j := 0 to n2 - 1 do
-        R[j] := arr[m + 1 + j]
-    endfor
-    
+    ak := {12, 11, 13}
+    j := 3
     i := 0
-    j := 0
-    k := l
-    
-    while i < n1 && j < n2 do
-        if L[i] <= R[j] then
-            arr[k] := L[i]
-            i := i + 1
-        else
-            arr[k] := R[j]
-            j := j + 1
-        endif
-        k := k + 1
+    while i < n .AnD. arr[i] != x do
+        i = i + 1
     endwhile
-    
-    while i < n1 do
-        arr[k] := L[i]
-        i := i + 1
-        k := k + 1
-    endwhile
-    
-    while j < n2 do
-        arr[k] := R[j]
-        j := j + 1
-        k := k + 1
-    endwhile
-endprocedure
-
-function sum(in a : integer, in b : integer): integer
-    begin
-    sum := a + b
-    return
+    if i > n then
+        ricerca_lineare := -1
+    else
+        ricerca_lineare := i
+    endif
+    print(ak[1])
+    j := ricerca_lineare_booleana
     end
 endfunction
 
-program MergeSortTest
-    var arr[6] : array of array of integer
-    var n, i : integer
+procedure ricerca_lineare_procedure(in x: integer, in n: integer, in arr[n]: array of integer, out pos: integer)
+    var i : integer
     begin
-    arr := {12, 11, 13, 5, 6, 7}
-    n := 6
-    
-    MergeSort(arr, 0, n - 1)
-    
-    for i := 0 to n - 1 do
-        print(arr[i])
-    endfor
+    i := 0
+    while i < n && arr[i] != x do
+        i = i + 1
+    endwhile
+    if i > n then
+        pos := -1
+    else
+        pos := i
+    endif
     end
-endprogram
+endprocedure
+
+function ricerca_lineare_booleana(in x: integer, in n: integer, in arr[n]: array of integer): logical
+    var i : integer
+    var ricerca_lineare_booleana : logical
+    begin
+    i := 0
+    while i < n && arr[i] != x do
+        i = i + 1
+    endwhile
+    if i > n then
+        ricerca_lineare_booleana := false
+    else
+        ricerca_lineare_booleana := true
+    endif
+    end
+endfunction
+
+function bubble_sort(in x: integer, in n: integer, in arr[n]: array of integer): integer
+    var i, j : integer
+    var ordered : logical
+    j := n-1
+    while j > 0 and not ordered do
+        ordered := true
+        i := 0
+        while i < j do
+            if arr[i] > arr[i+1] then
+                arr[i] = arr[i] ^ arr[i+1]
+                arr[i+1] = arr[i+1] ^ arr[i]
+                arr[i] = arr[i] ^ arr[i+1]
+                ordered = false
+            endif
+            i := i + 1
+        endwhile
+        j := j - 1
+    endwhile
+endfunction
